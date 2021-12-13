@@ -1,0 +1,167 @@
+* {
+  box-sizing: border-box;
+  font-family: "Roboto", Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  color: #2C3870;
+}
+
+body {
+  margin: 0;
+  padding: 20px;
+  min-height: 100vh;
+  background: linear-gradient(135deg, rgb(42, 53, 106), rgb(94, 126, 249));
+}
+
+.content {
+  display: flex;
+  flex-wrap: wrap;
+  margin: -10px;
+}
+
+.container {
+  position: relative;
+  width: 240px;
+  height: 400px;
+  margin: 10px;
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+.input-container {
+  background-color: #fff;
+}
+
+.input-container input {
+  display: none;
+}
+
+.input-container label {
+  position: absolute;
+  top: 20px; left: 20px; right: 20px; bottom: 20px;
+
+  border: 2px dashed #2C3870;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  transition: all 200ms ease-in-out;
+  cursor: pointer;
+}
+
+.highlight label {
+  border: 2px dashed brown;
+  color: brown;
+}
+
+label:hover {
+  border: transparent;
+  transform: scale(1.5);
+}
+
+.image-container {
+  width: 240px;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+}
+
+.image {
+  width: 100%;
+  height: 80%;
+  object-fit: cover;
+  object-position: center center;
+  filter: grayscale(50%);
+  transition: filter 200ms ease-in-out;
+}
+
+.image:hover {
+  filter: grayscale(0);
+  cursor: zoom-in;
+}
+
+.image-container p {
+  display: flex;
+  align-items: center;
+  height: 20%;
+  margin: 0;
+  padding: 10px;
+  background-color: #fff;
+  align-content: center;
+  text-align: center;
+}
+
+.image-container p span {
+  max-height: 100%;
+  word-break: break-all;
+  overflow: hidden;
+}
+
+.remove-img {
+  position: absolute;
+  top: 0; right: 0;
+  width: 40px;
+  height: 40px;
+  background-color: rgba(255, 255, 255, 0.8);
+  font-size: 27px;
+  font-weight: 700;
+  line-height: 40px;
+  text-align: center;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 200ms ease-in-out;
+}
+
+.image:hover ~ .remove-img,
+.remove-img:hover {
+  opacity: 1;
+}
+
+.delete {
+  text-decoration: line-through;
+  width: 0;
+  transform: scale(0);
+  transition: all 200ms linear 200ms;
+}
+
+#modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 90%;
+  height: 90%;
+  display: flex;
+  justify-content: center;
+  background-color: white;
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  transform: translate(-50%, -50%) scale(0);
+  transition: 200ms ease-in-out;
+  z-index: 10;
+}
+
+#modal img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+#modal.active {
+  transform: translate(-50%, -50%) scale(1);
+  cursor: zoom-out;
+}
+
+#overlay {
+  position: fixed;
+  opacity: 0;
+  transition: 200ms ease-in-out;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  pointer-events: none;
+}
+
+#overlay.active {
+  opacity: 1;
+  pointer-events: all;
+}
